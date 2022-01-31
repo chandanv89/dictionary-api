@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,32 +41,31 @@ public class DictionaryLoader {
         long start = System.currentTimeMillis();
         mapper = new ObjectMapper();
         List<Word> words = new ArrayList<>();
-        Map<String, String> dictionary = new HashMap<>();
+        Map<String, String> dictionary;
 
         try {
-            dictionary = mapper.readValue(new ClassPathResource(config.getJpa().getSeedPath()).getFile(), typeRef);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            dictionary = mapper.readValue(new ClassPathResource(config.getJpa().getSeedPath()).getInputStream(), typeRef);
 
-        for (String word : dictionary.keySet()) {
-            words.add(new Word(word, dictionary.get(word), word.length()));
-        }
-
-        List<Word> batch = new ArrayList<>();
-        words = words.stream().sorted().collect(Collectors.toList());
-
-        for (int i = 0; i < words.size(); i++) {
-            batch.add(words.get(i));
-
-            if (i == words.size() - 1 || i % config.getJpa().getBatchSize() == 0) {
-                repository.saveAll(batch);
-                batch = new ArrayList<>();
+            for (String word : dictionary.keySet()) {
+                words.add(new Word(word, dictionary.get(word), word.length()));
             }
+
+            List<Word> batch = new ArrayList<>();
+            words = words.stream().sorted().collect(Collectors.toList());
+
+            for (int i = 0; i < words.size(); i++) {
+                batch.add(words.get(i));
+
+                if (i == words.size() - 1 || i % config.getJpa().getBatchSize() == 0) {
+                    repository.saveAll(batch);
+                    batch = new ArrayList<>();
+                }
+            }
+        } catch (Exception e) {
+            log.error("Something went wrong!", e);
         }
 
         long end = System.currentTimeMillis();
         log.info("Dictionary populated with {} words in {} ms", words.size(), (end - start));
-
     }
 }
