@@ -18,7 +18,9 @@ public class WordEndsWithFilter implements WordFilter<List<Word>> {
 
         if (endsWith != null && !endsWith.trim().equals("")) {
             int initialLength = words.size();
-            words = words.stream().filter(w -> w.getWord().endsWith(endsWith)).collect(Collectors.toList());
+            words = words.stream()
+                    .filter(w -> w.getWord().toLowerCase().endsWith(endsWith.toLowerCase()))
+                    .collect(Collectors.toList());
 
             log.debug("Predicate: endsWith({}); Initial Count: {}; Filtered Count: {}", endsWith, initialLength, words.size());
         }

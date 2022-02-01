@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -18,7 +19,10 @@ public class WordBeginsWithFilter implements WordFilter<List<Word>> {
 
         if (beginsWith != null && !beginsWith.trim().equals("")) {
             int initialLength = words.size();
-            words = words.stream().filter(w -> w.getWord().startsWith(beginsWith)).collect(Collectors.toList());
+
+            words = words.stream()
+                    .filter(w -> w.getWord().toLowerCase().startsWith(beginsWith.toLowerCase()))
+                    .collect(Collectors.toList());
 
             log.debug("Predicate: beginsWith({}), Initial Count: {}; Filtered Count: {}", beginsWith, initialLength, words.size());
         }

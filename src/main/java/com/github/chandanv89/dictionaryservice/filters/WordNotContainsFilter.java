@@ -18,7 +18,9 @@ public class WordNotContainsFilter implements WordFilter<List<Word>> {
 
         if (notContains != null && !notContains.trim().equals("")) {
             int initialLength = words.size();
-            words = words.stream().filter(w -> !w.getWord().contains(notContains)).collect(Collectors.toList());
+            words = words.stream()
+                    .filter(w -> !w.getWord().toLowerCase().contains(notContains.toLowerCase()))
+                    .collect(Collectors.toList());
 
             log.debug("Predicate: notContains({}); Initial Count: {}; Filtered Count: {}", notContains, initialLength, words.size());
         }

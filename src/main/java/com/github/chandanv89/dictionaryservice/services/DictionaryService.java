@@ -47,7 +47,7 @@ public class DictionaryService {
 
     public DictionaryResponse getMeaningFor(String word) {
 
-        Page<Word> response = repository.findByWord(word, Pageable.ofSize(DEFAULT_PAGE_SIZE));
+        Page<Word> response = repository.findByWordIgnoreCase(word, Pageable.ofSize(DEFAULT_PAGE_SIZE));
 
         return DictionaryResponse.builder()
                 .words(response.getContent())

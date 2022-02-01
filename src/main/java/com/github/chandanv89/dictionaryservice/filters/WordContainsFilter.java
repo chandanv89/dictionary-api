@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -18,7 +19,9 @@ public class WordContainsFilter implements WordFilter<List<Word>> {
 
         if (contains != null && !contains.trim().equals("")) {
             int initialLength = words.size();
-            words = words.stream().filter(w -> w.getWord().contains(contains)).collect(Collectors.toList());
+            words = words.stream()
+                    .filter(w -> w.getWord().toLowerCase().contains(contains.toLowerCase()))
+                    .collect(Collectors.toList());
 
             log.debug("Predicate: contains({}); Initial Count: {}; Filtered Count: {}", contains, initialLength, words.size());
         }
