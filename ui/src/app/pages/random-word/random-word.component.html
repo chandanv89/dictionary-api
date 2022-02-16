@@ -1,0 +1,9 @@
+<div class="container-md">
+  <div *ngIf="word === undefined; else found">
+      Loading...
+  </div>
+  <ng-template #found>
+    <h1 class="display-4">{{ word.word }}</h1>
+    <p>{{ word.meaning }}</p></ng-template
+  >
+</div>

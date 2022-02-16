@@ -1,0 +1,11 @@
+.search-control {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    max-width: 1000px;
+}
+
+.align-centre {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
