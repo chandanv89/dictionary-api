@@ -1,0 +1,19 @@
+<div class="container mt-5 pb-5">
+  <div *ngIf="response !== undefined; else wordNotFound">
+    <a routerLink="/home">Back</a>
+    <h1 class="display-5">{{ response.word }}</h1>
+    <hr />
+    <p>
+      {{ response.meaning }}
+    </p>
+  </div>
+  <ng-template #wordNotFound>
+    <div class="container-fluid">
+      <h1 class="display-6">Oops!</h1>
+      <p>
+        We know this isn't what you were expecting to see - we neither! Please try again or check if you've spelt the word correctly.
+      </p>
+      <a routerLink="/home">Back</a>
+    </div>
+  </ng-template>
+</div>
