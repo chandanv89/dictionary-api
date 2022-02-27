@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Slf4j
 @AllArgsConstructor
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:9091", "https://*.herokuapp.com"})
 @RequestMapping("/rest/v1/dictionary")
 public class DictionaryController {
     private final DictionaryService service;

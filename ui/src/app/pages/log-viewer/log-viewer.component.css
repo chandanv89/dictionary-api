@@ -1,3 +1,13 @@
+.search-control {
+    height: 75%;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    max-width: 1000px;
+}
+
+.top-30 {
+    top: 50% !important;
+}
 
 .logs {
     font-family: monospace;
@@ -5,7 +15,7 @@
     background-color: #333;
     color: #ccc;
     overflow-x: auto;
-    height: 500px;
+    height: 100%;
     width: 100%;
     padding: 15px;
 }

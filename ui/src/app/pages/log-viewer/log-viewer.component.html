@@ -1,5 +1,5 @@
-<div class="container-md">
+<div class="search-control container-md p-3 position-absolute top-30 start-50 translate-middle">
   <div class="logs">
-    <li *ngFor="let log of logs | keyvalue">[{{ log.key }}] {{ log.value }}</li>
+    <p *ngFor="let log of logs | keyvalue">[{{ log.key }}] {{ log.value }}</p>
   </div>
 </div>
