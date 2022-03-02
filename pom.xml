@@ -6,7 +6,7 @@
 
     <groupId>com.github.chandanv89</groupId>
     <artifactId>dictionary</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

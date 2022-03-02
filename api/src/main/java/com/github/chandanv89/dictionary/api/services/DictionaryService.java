@@ -1,10 +1,7 @@
 package com.github.chandanv89.dictionary.api.services;
 
 import com.github.chandanv89.dictionary.api.filters.FilterProcessor;
-import com.github.chandanv89.dictionary.api.model.DictionaryResponse;
-import com.github.chandanv89.dictionary.api.model.Filter;
-import com.github.chandanv89.dictionary.api.model.GlobalValues;
-import com.github.chandanv89.dictionary.api.model.Word;
+import com.github.chandanv89.dictionary.api.model.*;
 import com.github.chandanv89.dictionary.api.repository.DictionaryRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,20 +25,31 @@ public class DictionaryService {
     private final DictionaryRepository repository;
     private final FilterProcessor filterProcessor;
 
-    public DictionaryResponse getWords(String sortBy,
-                                       String sortDir,
-                                       Integer pageSize,
-                                       Integer currentPage) {
+    public DictionaryResponse getWords(Options options) {
 
 
-        PageRequest pageRequest = PageRequest
-                .of(currentPage, pageSize, Sort.Direction.fromString(sortDir), sortBy);
+        PageRequest pageRequest = PageRequest.of(
+                options.getPage(),
+                options.getPageSize(),
+                Sort.Direction.fromString(options.getSortDirection()),
+                options.getSortBy());
+
+        List<Word> words = repository.findAll();
+
+        Filter filter = Filter.builder().beginsWith(options.getBeginsWith())
+                .contains(options.getContains())
+                .endsWith(options.getEndsWith())
+                .wordLength(options.getWordLength())
+                .notContains(options.getNotContains()).build();
+
+        words = filterProcessor.processFilters(words, filter);
 
         Page<Word> response = repository.findAll(pageRequest);
 
         return DictionaryResponse.builder()
                 .words(response.toList())
                 .totalResponseSize(response.getTotalElements())
+                .totalPages(response.getTotalPages())
                 .build();
     }
 

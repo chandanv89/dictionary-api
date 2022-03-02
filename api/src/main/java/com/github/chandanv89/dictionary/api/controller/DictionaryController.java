@@ -2,6 +2,7 @@ package com.github.chandanv89.dictionary.api.controller;
 
 import com.github.chandanv89.dictionary.api.model.DictionaryResponse;
 import com.github.chandanv89.dictionary.api.model.Filter;
+import com.github.chandanv89.dictionary.api.model.Options;
 import com.github.chandanv89.dictionary.api.services.DictionaryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -26,11 +27,8 @@ public class DictionaryController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = DictionaryResponse.class))})})
     @GetMapping("/words")
-    public DictionaryResponse getWords(@RequestParam(defaultValue = "word") String sortBy,
-                                       @RequestParam(defaultValue = "ASC") String sortDir,
-                                       @RequestParam(defaultValue = "10") Integer pageSize,
-                                       @RequestParam(defaultValue = "0") Integer currentPage) {
-        return service.getWords(sortBy, sortDir, pageSize, currentPage);
+    public DictionaryResponse getWords(Options options) {
+        return service.getWords(options);
     }
 
     @Operation(summary = "Gets a single word and it's definition.")
@@ -53,7 +51,7 @@ public class DictionaryController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = DictionaryResponse.class))})})
     @GetMapping("/random-word")
-    public DictionaryResponse getRandomWord(@RequestBody(required = false) Filter filter) {
+    public DictionaryResponse getRandomWord(@RequestParam(required = false) Filter filter) {
         return service.getRandomWord(filter);
     }
 
@@ -68,4 +66,9 @@ public class DictionaryController {
     public DictionaryResponse getWordOfTheDay() {
         return service.getWordOfTheDay();
     }
+
+//    @GetMapping("/index")
+//    public DictionaryIndexResponse getIndex() {
+//        return indexService.getIndex();
+//    }
 }

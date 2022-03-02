@@ -1,0 +1,10 @@
+.search-control {
+    height: 75%;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    max-width: 1000px;
+}
+
+.top-30 {
+    top: 50% !important;
+}

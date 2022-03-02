@@ -10,4 +10,5 @@ import java.util.List;
 public class DictionaryResponse {
     private List<Word> words;
     private Long totalResponseSize;
+    private int totalPages;
 }

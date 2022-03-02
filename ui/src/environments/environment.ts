@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // apiEndpoint: 'http://localhost:9091',
-  apiEndpoint: 'https://dictionary-service.herokuapp.com',
+  apiEndpoint: 'http://localhost:9091',
+  // apiEndpoint: 'https://dictionary-service.herokuapp.com',
   apiBasePath: '/rest/v1/dictionary'
 };
 

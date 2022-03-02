@@ -25,7 +25,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResolver(new PathResourceResolver() {
                     @Override
                     protected Resource getResource(String resourcePath, Resource location) throws IOException {
-                        if (resourcePath.startsWith("/rest/api")) return null;
+                        if (resourcePath.startsWith("/rest/")) return null;
                         return location.exists() && location.isReadable() ? location : null;
                     }
                 });
@@ -33,7 +33,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/rest/v1/dictionary/**")
+        registry.addMapping("/rest/**")
                 .allowedMethods("GET")
                 .allowedOrigins(
                         "http://localhost:4200",

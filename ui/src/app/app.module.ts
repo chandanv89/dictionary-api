@@ -12,6 +12,7 @@ import { WotdComponent } from './pages/wotd/wotd.component';
 import { SearchResultComponent } from './pages/search-result/search-result.component';
 import { LogViewerComponent } from './pages/log-viewer/log-viewer.component';
 import { RandomWordComponent } from './pages/random-word/random-word.component';
+import { IndexComponent } from './pages/index/index.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { RandomWordComponent } from './pages/random-word/random-word.component';
     FooterComponent,
     WotdComponent,
     LogViewerComponent,
-    RandomWordComponent
+    RandomWordComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
