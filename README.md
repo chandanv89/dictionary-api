@@ -1,6 +1,8 @@
 # Dictionary Service
 Rest endpoints for a dictionary app.
 
+[![DEVELOP](https://app.travis-ci.com/chandanv89/dictionary-api.svg?branch=develop)](https://app.travis-ci.com/chandanv89/dictionary-api) [![MAIN](https://app.travis-ci.com/chandanv89/dictionary-api.svg?branch=main)](https://app.travis-ci.com/chandanv89/dictionary-api)
+
 ## Try this now!
 The service is deployed on Heroku and you can test it right away!
 Since it's deployed using free-tier, the application may be sleeping/stopped. Please be patient while the app is started again - it'll take a few seconds ;)
