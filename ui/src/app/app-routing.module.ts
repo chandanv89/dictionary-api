@@ -6,11 +6,11 @@ import { RandomWordComponent } from './pages/random-word/random-word.component';
 import { WotdComponent } from './pages/wotd/wotd.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
   { path: 'wotd', component: WotdComponent },
   { path: 'random-word', component: RandomWordComponent },
-  { path: 'logs', component: LogViewerComponent }
+  { path: 'logs', component: LogViewerComponent },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({

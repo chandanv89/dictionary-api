@@ -1,11 +1,33 @@
 .search-control {
+    height: 75%;
     border: 1px solid #eee;
     border-radius: 5px;
     max-width: 1000px;
 }
 
-.align-centre {
+.top-30 {
+    top: 50% !important;
+}
+
+.form-control {
+    font-size: 1.5rem;
+}
+
+.input-group {
+    padding: 1% 10%;
+}
+
+.btn {
+    font-size: 1.5rem;
+    padding: .375rem 1rem;
+}
+.btn-outline-secondary {
+    border-color: #ced4da;
+}
+
+.welcome-msg {
     display: flex;
     align-items: center;
+    margin: 5%;
     flex-direction: column;
 }

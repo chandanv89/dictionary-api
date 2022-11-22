@@ -8,7 +8,7 @@
     <parent>
         <groupId>com.github.chandanv89</groupId>
         <artifactId>dictionary</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.2-SNAPSHOT</version>
     </parent>
 
     <artifactId>api</artifactId>
